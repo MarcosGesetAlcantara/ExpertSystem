@@ -5,7 +5,7 @@ public class SistemaExperto {
     
     //Variables 
     RuleVariable piel;
-    RuleVariable ojos;
+    RuleVariable orejas;
     RuleVariable altura;
     RuleVariable pieAbil;
     RuleVariable barba;
@@ -16,7 +16,7 @@ public class SistemaExperto {
     RuleVariable posicion;
     
     RuleVariable resultadoPiel;
-    RuleVariable resultadoOjos;
+    RuleVariable resultadoOrejas;
     RuleVariable resultadoAltura;
     RuleVariable resultadoPieAbil;
     RuleVariable resultadoBarba;
@@ -34,7 +34,7 @@ public class SistemaExperto {
         return resultado;
     }
     
-    public String ObtenerOjos(String resultadoCalzado, String pico) {
+    public String ObtenerOrejas(String resultadoCalzado, String pico) {
         basedeconocimiento();
         return resultado;
     }
@@ -82,7 +82,7 @@ public class SistemaExperto {
     //base del conocimiento
     public void basedeconocimiento() {
         piel = new RuleVariable(basedereglas,"");
-        ojos = new RuleVariable(basedereglas,""); 
+        orejas = new RuleVariable(basedereglas,""); 
         altura = new RuleVariable(basedereglas,"");
         pieAbil = new RuleVariable(basedereglas,"");
         barba = new RuleVariable(basedereglas,"");
@@ -93,7 +93,7 @@ public class SistemaExperto {
         posicion = new RuleVariable (basedereglas,"");
         
         resultadoPiel = new RuleVariable(basedereglas,"");
-        resultadoOjos = new RuleVariable(basedereglas,"");
+        resultadoOrejas = new RuleVariable(basedereglas,"");
         resultadoAltura = new RuleVariable(basedereglas,"") ;
         resultadoPieAbil = new RuleVariable(basedereglas,"");
         resultadoBarba = new RuleVariable(basedereglas,"");
@@ -105,6 +105,8 @@ public class SistemaExperto {
         
         Condition igual = new Condition("=");
         
+        
+        //piel
         Rule regla1 = new Rule(basedereglas,"regla1", 
             new Clause[] {
                 new Clause(piel,igual,"moreno")},
@@ -123,34 +125,47 @@ public class SistemaExperto {
                 new Clause(resultadoPiel,igual,"negra")
         );  
         
+        ///orejas
         Rule regla4= new Rule(basedereglas,"regla4", 
             new Clause[] {
                 new Clause(resultadoPiel,igual,"morena"),
-                new Clause(ojos,igual,"negros"),
-                new Clause(ojos,igual,"verdes"),
-                new Clause(ojos,igual,"cafes"),
-                new Clause(ojos,igual,"azules")},
-                new Clause(resultadoOjos,igual,"negros")
+                new Clause(orejas,igual,"grandes")},
+                new Clause(resultadoOrejas,igual,"grandes")
         ); 
         
         Rule regla5= new Rule(basedereglas,"regla5", 
             new Clause[] {
-                new Clause(resultadoPiel,igual,"blanca"),
-                new Clause(ojos,igual,"negros"),
-                new Clause(ojos,igual,"verdes"),
-                new Clause(ojos,igual,"cafes"),
-                new Clause(ojos,igual,"azules")},
-                new Clause(resultadoOjos,igual,"negros")
+                new Clause(resultadoPiel,igual,"morena"),
+                new Clause(orejas,igual,"chicas")},
+                new Clause(resultadoOrejas,igual,"chicas")
         );
         
         Rule regla6= new Rule(basedereglas,"regla6", 
             new Clause[] {
+                new Clause(resultadoPiel,igual,"blanca"),
+                new Clause(orejas,igual,"grandes")},
+                new Clause(resultadoOrejas,igual,"grandes")
+        );
+        
+        Rule regla7= new Rule(basedereglas,"regla7", 
+            new Clause[] {
+                new Clause(resultadoPiel,igual,"blanca"),
+                new Clause(orejas,igual,"chicas")},
+                new Clause(resultadoOrejas,igual,"chicas")
+        );
+        
+        Rule regla8 = new Rule(basedereglas,"regla9", 
+            new Clause[] {
                 new Clause(resultadoPiel,igual,"negra"),
-                new Clause(ojos,igual,"negros"),
-                new Clause(ojos,igual,"verdes"),
-                new Clause(ojos,igual,"cafes"),
-                new Clause(ojos,igual,"azules")},
-                new Clause(resultadoOjos,igual,"negros")
+                new Clause(orejas,igual,"grandes")},
+                new Clause(resultadoOrejas,igual,"grandes")
+        );
+        
+        Rule regla9= new Rule(basedereglas,"regla9", 
+            new Clause[] {
+                new Clause(resultadoPiel,igual,"negra"),
+                new Clause(orejas,igual,"chicas")},
+                new Clause(resultadoOrejas,igual,"chicas")
         );
     }
 }
